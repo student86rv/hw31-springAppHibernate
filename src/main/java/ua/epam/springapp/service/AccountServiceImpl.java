@@ -70,10 +70,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public AccountDto remove(UUID id) {
-        Account account = accountRepo.remove(id);
+        Account account = accountRepo.get(id);
         if (account == null) {
             throw new EntityNotFoundException();
         }
+        accountRepo.remove(id);
         return accountMapper.toDto(account);
     }
 }

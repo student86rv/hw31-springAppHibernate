@@ -9,7 +9,6 @@ import ua.epam.springapp.model.Account;
 import ua.epam.springapp.repository.AccountRepository;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Repository
@@ -28,8 +27,7 @@ public class AccountDaoImpl implements AccountRepository {
     @Override
     public Account get(UUID id) {
         Session session = sessionFactory.getCurrentSession();
-        Account account = session.get(Account.class, id);
-        return Objects.requireNonNull(account, "Account not found by id: " + id);
+        return session.get(Account.class, id);
     }
 
     @Override

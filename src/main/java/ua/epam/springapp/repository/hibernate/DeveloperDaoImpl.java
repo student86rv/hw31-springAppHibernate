@@ -9,7 +9,6 @@ import ua.epam.springapp.model.Developer;
 import ua.epam.springapp.repository.DeveloperRepository;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Repository
@@ -28,8 +27,7 @@ public class DeveloperDaoImpl implements DeveloperRepository {
     @Override
     public Developer get(UUID id) {
         Session session = sessionFactory.getCurrentSession();
-        Developer developer = session.get(Developer.class, id);
-        return Objects.requireNonNull(developer, "Account not found by id: " + id);
+        return session.get(Developer.class, id);
     }
 
     @Override

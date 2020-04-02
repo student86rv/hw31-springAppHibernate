@@ -70,10 +70,11 @@ public class DeveloperServiceImpl implements DeveloperService {
     @Override
     @Transactional(readOnly = true)
     public DeveloperDto remove(UUID id) {
-        Developer developer = developerRepo.remove(id);
+        Developer developer = developerRepo.get(id);
         if (developer == null) {
             throw new EntityNotFoundException();
         }
+        developerRepo.remove(id);
         return developerMapper.toDto(developer);
     }
 }

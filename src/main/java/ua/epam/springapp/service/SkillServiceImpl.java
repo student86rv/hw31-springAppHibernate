@@ -66,10 +66,11 @@ public class SkillServiceImpl implements SkillService {
     @Override
     @Transactional
     public SkillDto remove(UUID id) {
-        Skill skill = skillRepo.remove(id);
+        Skill skill = skillRepo.get(id);
         if (skill == null) {
             throw new EntityNotFoundException();
         }
+        skillRepo.remove(id);
         return skillMapper.toDto(skill);
     }
 }

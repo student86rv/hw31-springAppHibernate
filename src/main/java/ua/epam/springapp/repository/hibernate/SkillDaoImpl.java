@@ -9,7 +9,6 @@ import ua.epam.springapp.model.Skill;
 import ua.epam.springapp.repository.SkillRepository;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Repository
@@ -28,8 +27,7 @@ public class SkillDaoImpl implements SkillRepository {
     @Override
     public Skill get(UUID id) {
         Session session = sessionFactory.getCurrentSession();
-        Skill skill = session.get(Skill.class, id);
-        return Objects.requireNonNull(skill, "Skill not found by id: " + id);
+        return session.get(Skill.class, id);
     }
 
     @Override
